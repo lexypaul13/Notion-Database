@@ -37,7 +37,7 @@ class NetworkService{
             let decoder = JSONDecoder()
             
             do{
-                let decodedJson = try decoder.decode(Database.self, from: data).results
+                let decodedJson = try decoder.decode(DatabaseResponse.self, from: data).results
                 DispatchQueue.main.async {
                     completion(decodedJson)
                 }

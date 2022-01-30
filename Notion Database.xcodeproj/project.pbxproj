@@ -106,8 +106,7 @@
 				577B6B7127A73244007F5D8C /* AppDelegate.swift */,
 				577B6B7327A73244007F5D8C /* SceneDelegate.swift */,
 				577B6B7527A73244007F5D8C /* ViewController.swift */,
-				577B6BA127A7326B007F5D8C /* NetworkService.swift */,
-				577B6BA327A7329B007F5D8C /* Database.swift */,
+				577B6BA527A73309007F5D8C /* Model */,
 				577B6B7727A73244007F5D8C /* Main.storyboard */,
 				577B6B7A27A73246007F5D8C /* Assets.xcassets */,
 				577B6B7C27A73246007F5D8C /* LaunchScreen.storyboard */,
@@ -131,6 +130,15 @@
 				577B6B9427A73246007F5D8C /* Notion_DatabaseUITestsLaunchTests.swift */,
 			);
 			path = "Notion DatabaseUITests";
+			sourceTree = "<group>";
+		};
+		577B6BA527A73309007F5D8C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				577B6BA127A7326B007F5D8C /* NetworkService.swift */,
+				577B6BA327A7329B007F5D8C /* Database.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
