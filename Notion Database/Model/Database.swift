@@ -37,6 +37,7 @@ struct Properties: Codable {
 
 struct Name: Codable {
     let title: [Title]
+    
     enum CodingKeys: String, CodingKey {
         case title = "title"
     }
@@ -64,6 +65,7 @@ struct Text: Codable {
  
 struct Tags: Codable {
     let multiSelect: [MultiSelect]
+    
     enum CodingKeys: String, CodingKey {
         case multiSelect = "multi_select"
     }
