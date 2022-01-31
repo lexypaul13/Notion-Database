@@ -29,17 +29,16 @@ class NetworkService{
                 print(error.localizedDescription)
                 return
             }
+
             guard let data = data else {
                 print(error?.localizedDescription)
                 return
             }
-            
             let decoder = JSONDecoder()
-            
             do{
-                let decodedJson = try decoder.decode(DatabaseResponse.self, from: data).results
+                let decodedJson = try decoder.decode(DatabaseResponse.self, from: data)
                 DispatchQueue.main.async {
-                    completion(decodedJson)
+                    completion(decodedJson.results)
                 }
             }catch let error{
                 print(error)
@@ -48,4 +47,6 @@ class NetworkService{
             
         }.resume()
     }
+    
+
 }
