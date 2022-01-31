@@ -16,7 +16,6 @@ class NotionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setUpTableView()
         getNamesAndTags()
     }
@@ -26,19 +25,23 @@ class NotionViewController: UIViewController {
         tableView.dataSource = self
     }
     
+    
     func getNamesAndTags(){
-        networkService.getJSON {  [weak self ] results in
+        networkService.getJSON {  [weak self] (results,err)  in
             guard let self = self else { return}
+            if let error = err {
+                print("Failed to fetch courses:", error)
+                return
+            }
+            
             guard let results = results else {return}
-            for result in results {
-                self.names = result.properties.name.title.map { $0.plainText }
-                self.tags = result.properties.tags.multiSelect.map { $0.name }
-               
-                print(self.names)
-                print(self.tags)
+            for result in results.reversed() {
+                let name = result.properties.name.title.first?.text.content ?? ""
+                let tag = result.properties.tags.multiSelect.map { $0.name }
+                self.names.append(name)
+                self.tags.append(tag.joined(separator: ", "))
             }
             self.tableView.reloadData()
-
         }
     }
     
@@ -51,15 +54,16 @@ extension NotionViewController: UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? NotionTableViewCell
-        cell?.nameLabel.text = names[indexPath.row]
-        cell?.tagLabel.text = tags[indexPath.row]
-        return cell!
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! NotionTableViewCell
+        cell.nameLabel.text = names[indexPath.row]
+        cell.tagLabel.text = tags[indexPath.row]
+        
+        return cell
     }
     
     
      func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 163
+        return 140
     }
     
 }

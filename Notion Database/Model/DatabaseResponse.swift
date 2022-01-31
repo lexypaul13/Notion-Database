@@ -8,6 +8,7 @@
 import Foundation
 
 struct DatabaseResponse: Codable {
+    
     let object: String
     let results: [Result]
     
@@ -18,6 +19,7 @@ struct DatabaseResponse: Codable {
 }
 
 struct Result: Codable {
+    
     let properties: Properties
     
     enum CodingKeys: String, CodingKey {
@@ -45,11 +47,9 @@ struct Name: Codable {
 
 struct Title: Codable {
     let text: Text
-    let plainText: String
-
+    
     enum CodingKeys: String, CodingKey {
         case text = "text"
-        case plainText = "plain_text"
     }
 }
  
@@ -71,11 +71,8 @@ struct Tags: Codable {
 }
 
 struct MultiSelect: Codable {
-    let id: String
     let name: String
-
     enum CodingKeys: String, CodingKey {
-        case id = "id"
         case name = "name"
     }
 }
