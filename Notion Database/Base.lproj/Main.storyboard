@@ -20,7 +20,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="154" id="uT0-sX-BOz">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="154" id="uT0-sX-BOz" customClass="NotionTableViewCell" customModule="Notion_Database" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="44.5" width="414" height="154"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uT0-sX-BOz" id="YaK-cC-p4S">
@@ -28,10 +28,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Gst-pt-Wjq">
-                                                    <rect key="frame" x="20" y="10.5" width="221" height="138"/>
+                                                    <rect key="frame" x="20" y="10.5" width="344" height="138"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jqC-hf-1Di">
-                                                            <rect key="frame" x="0.0" y="0.0" width="221" height="63"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="344" height="63"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="63" id="c9R-xa-MhO"/>
                                                             </constraints>
@@ -40,10 +40,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MQ5-jb-Flm">
-                                                            <rect key="frame" x="0.0" y="75" width="221" height="63"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="63" id="QZ5-Cn-7mC"/>
-                                                            </constraints>
+                                                            <rect key="frame" x="0.0" y="75" width="344" height="63"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -55,11 +52,19 @@
                                                 <constraint firstAttribute="bottom" secondItem="Gst-pt-Wjq" secondAttribute="bottom" constant="5.5" id="5Nh-gY-kvy"/>
                                                 <constraint firstItem="Gst-pt-Wjq" firstAttribute="leading" secondItem="YaK-cC-p4S" secondAttribute="leading" constant="20" symbolic="YES" id="EYL-cJ-UQX"/>
                                                 <constraint firstItem="Gst-pt-Wjq" firstAttribute="top" secondItem="YaK-cC-p4S" secondAttribute="top" constant="10.5" id="GBd-jp-V6H"/>
-                                                <constraint firstAttribute="trailing" secondItem="Gst-pt-Wjq" secondAttribute="trailing" constant="173" id="KL8-V9-saq"/>
+                                                <constraint firstAttribute="trailing" secondItem="Gst-pt-Wjq" secondAttribute="trailing" constant="50" id="KL8-V9-saq"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="nameLabel" destination="jqC-hf-1Di" id="7BE-xg-dvp"/>
+                                            <outlet property="tagLabel" destination="MQ5-jb-Flm" id="s1X-XK-rI5"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="t8a-c1-krx"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="2Uf-hS-bgw"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -71,6 +76,9 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="V9w-Fo-PRU" secondAttribute="trailing" id="olV-lN-saI"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="V9w-Fo-PRU" id="Bba-ov-Vjc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
