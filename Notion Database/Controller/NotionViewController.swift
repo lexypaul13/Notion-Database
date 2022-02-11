@@ -12,6 +12,7 @@ class NotionViewController: UIViewController {
     let networkService = NetworkService.shared
     var names = [String]()
     var tags =  [String]()
+    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -35,12 +36,14 @@ class NotionViewController: UIViewController {
             }
             
             guard let results = results else {return}
-            for result in results.reversed() {
+
+            for result in results {
                 let name = result.properties.name.title.first?.text.content ?? ""
                 let tag = result.properties.tags.multiSelect.map { $0.name }
                 self.names.append(name)
                 self.tags.append(tag.joined(separator: ", "))
             }
+            print(self.names)
             self.tableView.reloadData()
         }
     }
@@ -50,7 +53,7 @@ extension NotionViewController: UITableViewDelegate,UITableViewDataSource{
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return names.count
+        return tags.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -63,7 +66,7 @@ extension NotionViewController: UITableViewDelegate,UITableViewDataSource{
     
     
      func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 140
+        return 120
     }
     
 }
